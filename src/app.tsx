@@ -2,19 +2,34 @@ import { useState } from "preact/hooks";
 import "./app.css";
 
 export function App({ Container }: { Container: HTMLElement }) {
-	const [count, setCount] = useState(0);
-
 	const keywords = Container.getAttribute("data-keywords");
-	const name = Container.getAttribute("data-name");
+	const description = Container.getAttribute("data-description");
+
+	const metaTags = document.getElementsByTagName("meta");
+
+	const metaHeaders: { name: string; content: string }[] = [];
+
+	for (const tag of metaTags) {
+		const name = tag.getAttribute("name");
+		const content = tag.getAttribute("content");
+
+		if ((name === "keywords" || name === "description") && content) {
+			metaHeaders.push({ name, content });
+		}
+	}
+
+	console.log(metaHeaders);
 
 	return (
 		<>
 			<h1>Widget Test</h1>
-			<h2>Site name: {name}</h2>
-			<h2>Site keywords: {keywords}</h2>
-			<div class="card">
-				<button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-			</div>
+			<h2>Custom keywords: {keywords}</h2>
+			<h2>Custom description: {description}</h2>
+			{metaHeaders.map((meta) => (
+				<h2>
+					Meta {meta.name}: {meta.content}
+				</h2>
+			))}
 		</>
 	);
 }
