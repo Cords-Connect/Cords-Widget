@@ -4,9 +4,9 @@ Widget placeable on any site. Collects the user's keywords and description to di
 
 ### HOW TO USE
 
-Place this anywhere in your HTML.
-
 ### Method 1: Custom keywords and description
+
+Place this line of code in your HTML. Then enter custom keywords and description.
 
 ```html
 <div
@@ -25,3 +25,7 @@ Without the keywords and description tags the widget will fall back to the site 
 <div id="widget"></div>
 <script src="https://billyhawkes.github.io/widget/dist/widget.js"></script>
 ```
+
+### Method 3: Wordpress Plugin
+
+Follow instructions in plugin documentation at https://github.com/billyhawkes/cords-wp-plugin

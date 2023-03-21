@@ -18,18 +18,41 @@ export function App({ Container }: { Container: HTMLElement }) {
 		}
 	}
 
-	console.log(metaHeaders);
-
 	return (
-		<>
-			<h1>Widget Test</h1>
-			<h2>Custom keywords: {keywords}</h2>
-			<h2>Custom description: {description}</h2>
+		<div className="p-8 border-[2px] border-[#ccc] m-4 rounded-xl">
+			<h1 className="text-3xl mb-4">Widget Test</h1>
+			<h1 className="text-lg">
+				Fully built with React and Vite at{" "}
+				<a
+					className="text-blue-600 underline"
+					href="https://github.com/billyhawkes/widget"
+					target="_blank"
+				>
+					REPO
+				</a>
+				. So far this widget gets data from the users website into React. The data below can
+				be used to find similar services based on keywords/description.
+			</h1>
+			<h2 className="text-lg mb-2 my-4">
+				Custom values: User can input custom keywords and description in the html or via{" "}
+				<a
+					className="text-blue-600 underline"
+					href="https://github.com/billyhawkes/cords-wp-plugin"
+					target="_blank"
+				>
+					wordpress plugin
+				</a>
+			</h2>
+			<h2>keywords: {keywords}</h2>
+			<h2>description: {description}</h2>
+			<h2 className="text-lg mb-2 my-4">
+				Meta tags: finds description and keywords from meta
+			</h2>
 			{metaHeaders.map((meta) => (
-				<h2>
-					Meta {meta.name}: {meta.content}
-				</h2>
+				<p>
+					{meta.name}: {meta.content}
+				</p>
 			))}
-		</>
+		</div>
 	);
 }
