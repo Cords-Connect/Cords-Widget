@@ -1,7 +1,4 @@
-import { useState } from "preact/hooks";
-import "./app.css";
-
-export function App({ Container }: { Container: HTMLElement }) {
+const App = ({ Container }: { Container: HTMLElement }) => {
 	const keywords = Container.getAttribute("data-keywords");
 	const description = Container.getAttribute("data-description");
 
@@ -57,4 +54,6 @@ export function App({ Container }: { Container: HTMLElement }) {
 			<script src="https://billyhawkes.github.io/widget/dist/widget.js"></script>
 		</div>
 	);
-}
+};
+
+export default App;
