@@ -45,11 +45,15 @@ const App = ({ Container }: { Container: HTMLElement }) => {
 			<h2 className="text-lg mb-2 my-4">
 				Meta tags: finds description and keywords from meta
 			</h2>
-			{metaHeaders.map((meta) => (
-				<p>
-					{meta.name}: {meta.content}
-				</p>
-			))}
+			{metaHeaders.length > 0 ? (
+				metaHeaders.map((meta) => (
+					<p>
+						{meta.name}: {meta.content}
+					</p>
+				))
+			) : (
+				<p>No meta tags found</p>
+			)}
 			<div id="widget" data-keywords="" data-description="test"></div>
 			<script src="https://billyhawkes.github.io/widget/dist/widget.js"></script>
 		</div>
