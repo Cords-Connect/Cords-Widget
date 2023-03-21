@@ -53,6 +53,8 @@ export function App({ Container }: { Container: HTMLElement }) {
 					{meta.name}: {meta.content}
 				</p>
 			))}
+			<div id="widget" data-keywords="" data-description="test"></div>
+			<script src="https://billyhawkes.github.io/widget/dist/widget.js"></script>
 		</div>
 	);
 }
