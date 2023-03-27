@@ -1,4 +1,5 @@
-import { render } from "preact";
+import React from "react";
+import ReactDOM from "react-dom/client";
 import App from "./app";
 import "./index.css";
 
@@ -6,4 +7,8 @@ import "./index.css";
 const Container = document.getElementById("widget") as HTMLElement;
 
 // Inject our React App
-render(<App Container={Container} />, Container);
+ReactDOM.createRoot(Container).render(
+	<React.StrictMode>
+		<App Container={Container} />
+	</React.StrictMode>
+);

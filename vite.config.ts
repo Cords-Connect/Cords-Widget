@@ -1,15 +1,18 @@
 import { defineConfig } from "vite";
-import preact from "@preact/preset-vite";
+import react from "@vitejs/plugin-react";
 import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-	plugins: [preact(), cssInjectedByJsPlugin()],
+	plugins: [react(), cssInjectedByJsPlugin()],
 	build: {
 		rollupOptions: {
 			output: {
 				entryFileNames: "widget.js",
 			},
 		},
+	},
+	server: {
+		port: 3000,
 	},
 });
