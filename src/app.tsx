@@ -32,7 +32,7 @@ const App = ({ Container }: { Container: HTMLElement }) => {
 	}
 
 	return (
-		<div className="fixed bottom-6 right-6 h-[500px] w-96 overflow-x-hidden overflow-y-scroll rounded-2xl shadow-2xl">
+		<div className="fixed bottom-6 right-6 z-50 h-[500px] w-96 overflow-x-hidden overflow-y-scroll rounded-2xl bg-white shadow-2xl">
 			<div className="bg-black bg-gradient-to-r from-primary to-primary/80 text-white">
 				<div className="flex justify-end p-4">
 					<button
