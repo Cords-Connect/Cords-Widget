@@ -24,7 +24,7 @@ const App = ({ Container }: { Container: HTMLElement }) => {
 		return (
 			<button
 				onClick={() => setOpen(true)}
-				className="fixed bottom-6 right-6 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-white shadow-2xl"
+				className="fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-white shadow-2xl"
 			>
 				<FaQuestion size={22} />
 			</button>
@@ -32,7 +32,7 @@ const App = ({ Container }: { Container: HTMLElement }) => {
 	}
 
 	return (
-		<div className="fixed bottom-6 right-6 z-50 h-[500px] w-96 overflow-x-hidden overflow-y-scroll rounded-2xl bg-white shadow-2xl">
+		<div className="fixed bottom-6 right-6 z-50 h-[600px] w-[400px] overflow-x-hidden overflow-y-scroll rounded-2xl bg-white shadow-2xl">
 			<div className="bg-black bg-gradient-to-r from-primary to-primary/80 text-white">
 				<div className="flex justify-end p-4">
 					<button
@@ -43,7 +43,7 @@ const App = ({ Container }: { Container: HTMLElement }) => {
 					</button>
 				</div>
 				<div className="p-6">
-					<h3 className="mb-2 text-lg font-bold">
+					<h3 className="mb-2 text-lg font-bold text-white">
 						Welcome to the CORDS widget
 					</h3>
 					<p>Here is a quick explanation</p>
