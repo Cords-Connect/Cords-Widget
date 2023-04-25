@@ -51,7 +51,7 @@ const Similar: Component<Props> = (props) => {
 	const [services] = createResource(() => fetchSimilarFromKeywords(props.keywords));
 
 	return (
-		<div class="bg-slate-100 flex-1 p-4 flex flex-col">
+		<div class="bg-slate-100 flex-1 p-4 flex flex-col text-black">
 			{services.loading && (
 				<div class="flex-1 flex justify-center items-center">Loading...</div>
 			)}

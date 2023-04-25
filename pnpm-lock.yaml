@@ -16,6 +16,9 @@ dependencies:
   solid-element:
     specifier: ^1.7.0
     version: 1.7.0(solid-js@1.7.3)
+  solid-icons:
+    specifier: ^1.0.4
+    version: 1.0.4(solid-js@1.7.3)
   solid-js:
     specifier: ^1.7.3
     version: 1.7.3
@@ -960,6 +963,15 @@ packages:
       solid-js: ^1.7.0
     dependencies:
       component-register: 0.8.3
+      solid-js: 1.7.3
+    dev: false
+
+  /solid-icons@1.0.4(solid-js@1.7.3):
+    resolution: {integrity: sha512-gJTp4in3+OYCs9WvDkSLt4Los2unR3Uoder8wjh15GsfP20xiNOLfPTJllXmn+fI8+k3x7bRYtLGIgWd9fUQug==}
+    engines: {node: '>= 16'}
+    peerDependencies:
+      solid-js: '*'
+    dependencies:
       solid-js: 1.7.3
     dev: false
 

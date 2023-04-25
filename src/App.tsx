@@ -1,4 +1,5 @@
 import { Component, Show, createSignal, lazy } from "solid-js";
+import { FaSolidQuestion, FaSolidX } from "solid-icons/fa";
 const Similar = lazy(() => import("./Similar"));
 
 type Props = {
@@ -18,7 +19,7 @@ const App: Component<Props> = (props) => {
 					onClick={toggle}
 					class="font-lato fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-white shadow-2xl"
 				>
-					{"?"}
+					<FaSolidQuestion size={20} />
 				</button>
 			}
 		>
@@ -29,7 +30,7 @@ const App: Component<Props> = (props) => {
 							onClick={toggle}
 							class="mb-4 flex h-7 w-7 items-center justify-center rounded-lg bg-slate-800 bg-opacity-30 text-white transition-colors hover:bg-opacity-50"
 						>
-							X
+							<FaSolidX size={14} />
 						</button>
 					</div>
 					<div class="p-6">
