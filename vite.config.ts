@@ -1,18 +1,12 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
+import { defineConfig } from 'vite';
+import solidPlugin from 'vite-plugin-solid';
 
-// https://vitejs.dev/config/
 export default defineConfig({
-	plugins: [react(), cssInjectedByJsPlugin()],
-	build: {
-		rollupOptions: {
-			output: {
-				entryFileNames: "widget.js",
-			},
-		},
-	},
-	server: {
-		port: 3000,
-	},
+  plugins: [solidPlugin()],
+  server: {
+    port: 3000,
+  },
+  build: {
+    target: 'esnext',
+  },
 });
