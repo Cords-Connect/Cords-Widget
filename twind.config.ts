@@ -1,7 +1,8 @@
-import { Rule, defineConfig } from "@twind/core";
+import { defineConfig } from "@twind/core";
 import presetAutoprefix from "@twind/preset-autoprefix";
 import presetTailwind from "@twind/preset-tailwind";
 import tailwindConfig from "./tailwind.config";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import presetRemToPx from "./presetRemToPx";
 

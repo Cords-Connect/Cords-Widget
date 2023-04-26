@@ -1,7 +1,9 @@
 import { Component, Show, createSignal, lazy } from "solid-js";
 import { FaSolidQuestion, FaSolidX } from "solid-icons/fa";
 import { Transition } from "solid-transition-group";
+
 const Similar = lazy(() => import("./Similar"));
+const Pages = lazy(() => import("./Pages"));
 
 type Props = {
 	keywords: string;
@@ -39,7 +41,7 @@ const App: Component<Props> = (props) => {
 						</button>
 					}
 				>
-					<div class="all fixed h-screen w-screen left-0 right-0 top-0 bottom-0 sm:left-auto sm:top-auto sm:bottom-6 sm:right-6 z-50 sm:h-[600px] sm:w-[400px] overflow-x-hidden overflow-y-scroll sm:rounded-2xl bg-white shadow-2xl font-lato flex flex-col">
+					<div class="all fixed h-screen w-screen left-0 right-0 top-0 bottom-0 sm:left-auto sm:top-auto sm:bottom-6 sm:right-6 z-50 sm:h-[600px] sm:w-[400px] overflow-x-hidden overflow-y-scroll sm:rounded-2xl bg-slate-100 shadow-2xl font-lato flex flex-col">
 						<div class="bg-black bg-gradient-to-r from-slate-800 to-slate-600 text-white">
 							<div class="flex justify-end p-4">
 								<button
@@ -56,6 +58,7 @@ const App: Component<Props> = (props) => {
 								<p class="text-slate-200">Here you can view similar services</p>
 							</div>
 						</div>
+						<Pages />
 						<Similar keywords={props.keywords} />
 					</div>
 				</Show>

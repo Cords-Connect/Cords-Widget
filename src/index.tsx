@@ -3,7 +3,6 @@ import App from "./App";
 import { twind, cssom, observe } from "@twind/core";
 import "construct-style-sheets-polyfill";
 import config from "../twind.config";
-import crawl from "./lib/crawler";
 
 customElement("cords-widget", (props: { keywords?: string }, { element }) => {
 	// check if keywords are passed in as props
@@ -46,7 +45,3 @@ if (shadowRoot && shadowRoot !== null) {
 	// finally, observe using tw function
 	observe(tw, shadowRoot);
 }
-
-// Web crawler
-const url = window.location.href;
-crawl(url, url).then(() => console.log("Finished crawl"));

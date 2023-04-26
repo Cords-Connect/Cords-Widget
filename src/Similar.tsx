@@ -52,6 +52,7 @@ const Similar: Component<Props> = (props) => {
 
 	return (
 		<div class="bg-slate-100 flex-1 p-4 flex flex-col text-black">
+			<h4 class="text-xl mb-3">Similar</h4>
 			{services.loading && (
 				<div class="flex-1 flex justify-center items-center">Loading...</div>
 			)}
