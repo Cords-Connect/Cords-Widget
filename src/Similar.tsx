@@ -59,7 +59,7 @@ const Similar: Component<Props> = (props) => {
 			{services() && (
 				<For each={services()}>
 					{(service) => (
-						<div class="bg-white p-4 mb-4 rounded-lg shadow">{service.name.en}</div>
+						<div class="bg-white p-4 mb-4 rounded-lg shadow">{service.name.en} </div>
 					)}
 				</For>
 			)}
