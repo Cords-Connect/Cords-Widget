@@ -24,7 +24,9 @@ const Pages = () => {
 								class="flex flex-col p-3 rounded-lg bg-white shadow mb-2 hover:shadow-md transition"
 							>
 								<span>{page.title}</span>
-								<span class="opacity-70 mt-2">{page.desription}</span>
+								{page.desription && (
+									<span class="opacity-70 mt-2">{page.desription}</span>
+								)}
 							</a>
 						);
 					}}

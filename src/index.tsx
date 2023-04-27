@@ -4,10 +4,7 @@ import { twind, cssom, observe } from "@twind/core";
 import "construct-style-sheets-polyfill";
 import config from "../twind.config";
 
-customElement("cords-widget", (props: { keywords?: string }, { element }) => {
-	// check if keywords are passed in as props
-	if (props?.keywords) return <App keywords={props.keywords} />;
-
+customElement("cords-widget", (_, { element }) => {
 	// check if keywords are passed in as attribute
 	const elementKeywords = element.getAttribute("keywords");
 	if (elementKeywords) return <App keywords={elementKeywords} />;

@@ -34,7 +34,6 @@ const getPages = async (baseUrl: string) => {
 		const keywords = $("meta[name='keywords']").attr("content");
 		const page = { url, title, desription: description || "", keywords: keywords || "" };
 		pages.push(page);
-		console.log(page);
 
 		// Get all links on the page, and crawl them recursively
 		const links = $("a");
@@ -49,7 +48,6 @@ const getPages = async (baseUrl: string) => {
 	};
 	await crawl(baseUrl);
 
-	console.log(pages);
 	return pages;
 };
 
