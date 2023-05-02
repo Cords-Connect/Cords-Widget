@@ -30,8 +30,12 @@ const getPages = async (baseUrl: string) => {
 
 		// Get page title, description, and keywords
 		const title = $("title").text();
-		const description = $("meta[name='description']").attr("content");
-		const keywords = $("meta[name='keywords']").attr("content");
+		const description =
+			$('meta[property="og:description"]').attr("content") ||
+			$('meta[name="description"]').attr("content");
+		const keywords =
+			$('meta[property="og:keywords"]').attr("content") ||
+			$('meta[name="keywords"]').attr("content");
 		const page = { url, title, desription: description || "", keywords: keywords || "" };
 		pages.push(page);
 
