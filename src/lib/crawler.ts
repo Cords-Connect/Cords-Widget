@@ -3,7 +3,7 @@ import * as cheerio from "cheerio";
 type Page = {
 	url: string;
 	title: string;
-	desription: string;
+	description: string;
 	keywords: string;
 };
 
@@ -29,14 +29,20 @@ const getPages = async (baseUrl: string) => {
 		const $ = cheerio.load(html);
 
 		// Get page title, description, and keywords
-		const title = $("title").text();
+		const title =
+			$('meta[property="og:title"]').attr("content") ||
+			$("title").text() ||
+			$('meta[name="title"]').attr("content") ||
+			"";
 		const description =
 			$('meta[property="og:description"]').attr("content") ||
-			$('meta[name="description"]').attr("content");
+			$('meta[name="description"]').attr("content") ||
+			"";
 		const keywords =
 			$('meta[property="og:keywords"]').attr("content") ||
-			$('meta[name="keywords"]').attr("content");
-		const page = { url, title, desription: description || "", keywords: keywords || "" };
+			$('meta[name="keywords"]').attr("content") ||
+			"";
+		const page = { url, title, description, keywords };
 		pages.push(page);
 
 		// Get all links on the page, and crawl them recursively
