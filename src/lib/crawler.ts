@@ -24,6 +24,8 @@ const getPages = async (baseUrl: string) => {
 		if (pageSeen.get(url)) return;
 		else pageSeen.set(url, true);
 
+		console.log(pageSeen, url);
+
 		const res = await fetch(url);
 		const html = await res.text();
 		const $ = cheerio.load(html);
