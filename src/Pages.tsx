@@ -17,7 +17,6 @@ const Pages = () => {
 			{crawledPages() && (
 				<For each={crawledPages()}>
 					{(page) => {
-						if (page.url === window.location.href) return;
 						return (
 							<a
 								href={page.url}
