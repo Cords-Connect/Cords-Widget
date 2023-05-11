@@ -7,15 +7,13 @@ type Page = {
 	keywords: string;
 };
 
-// Test getUrl
 const getUrl = (baseUrl: string, url: string) => {
 	if (!url.includes("http")) {
 		if (url.startsWith("/")) return `${baseUrl}${url}`;
 		else return `${baseUrl}/${url}`;
 	} else {
-		const removedHash = url.includes("#") ? url.slice(url.indexOf("#") + 1) : url;
-		if (removedHash.endsWith("/")) return removedHash.replace("/", "");
-		else return removedHash;
+		if (url.endsWith("/")) return url.replace("/", "");
+		else return url;
 	}
 };
 

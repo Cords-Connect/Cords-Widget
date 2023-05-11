@@ -27,7 +27,7 @@ const Pages = () => {
 									<span class="opacity-70 mt-2">{page.description}</span>
 								)}
 								{page.keywords && (
-									<span class="opacity-70 mt-2">{page.description}</span>
+									<span class="opacity-70 mt-2">{page.keywords}</span>
 								)}
 							</a>
 						);
