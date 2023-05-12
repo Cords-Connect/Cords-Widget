@@ -1,5 +1,10 @@
-import { Component, For, Show, createResource, createSignal, lazy } from "solid-js";
-import { FaSolidQuestion, FaSolidX } from "solid-icons/fa";
+import { For, Show, createResource, createSignal } from "solid-js";
+import {
+	FaRegularClipboard,
+	FaSolidClipboardCheck,
+	FaSolidQuestion,
+	FaSolidX,
+} from "solid-icons/fa";
 import { Transition } from "solid-transition-group";
 import { z } from "zod";
 import Cookies from "js-cookie";
@@ -50,15 +55,45 @@ const App = () => {
 	const [open, setOpen] = createSignal(false);
 	const toggle = () => setOpen(!open());
 	const id = "9f19b5ed-658d-4370-bc71-ee0a4ce7d30d";
-	const userId = Cookies.get("userId") || Cookies.set("userId", Math.random().toString());
 
-	console.log(userId);
+	// Initialize clipboard
+	const [clipboard, setClipboard] = createSignal<string[]>([]);
+	const clipboardCookie = Cookies.get("clipboard");
+	if (!clipboardCookie) {
+		Cookies.set("clipboard", JSON.stringify([]));
+	} else {
+		const services: unknown = JSON.parse(clipboardCookie);
+		const validServices = z.string().array().safeParse(services);
+		if (validServices.success) {
+			setClipboard(validServices.data);
+		} else {
+			setClipboard([]);
+			Cookies.set("clipboard", JSON.stringify([]));
+		}
+	}
 
 	const fetchService = async (id: string) => {
 		const response = await fetch(`https://backend-api-dev.cords.dev/resource/${id}`);
 		const data = await response.json();
 		return ServiceSchema.parse(data);
 	};
+
+	const saveService = (id: string) => {
+		if (clipboard().includes(id)) {
+			return;
+		} else {
+			Cookies.set("clipboard", JSON.stringify([...clipboard(), id]));
+			setClipboard([...clipboard(), id]);
+		}
+	};
+
+	const removeService = (id: string) => {
+		const newClipboard = clipboard().filter((service) => service !== id);
+		Cookies.set("clipboard", JSON.stringify(newClipboard));
+		setClipboard(newClipboard);
+	};
+
+	const isSaved = (id: string) => clipboard().includes(id);
 
 	const [service] = createResource(() => fetchService(id));
 
@@ -104,7 +139,7 @@ const App = () => {
 							</h3>
 							<p class="text-slate-200">Here you can view similar services</p>
 						</div>
-						<div class="px-3 text-black">
+						<div class="p-3 text-black bg-slate-100">
 							{service.loading && (
 								<div class="flex-1 flex justify-center items-center">
 									Loading...
@@ -115,11 +150,34 @@ const App = () => {
 							)}
 							{service().recommendations && (
 								<For each={service().recommendations}>
-									{(service) => (
-										<div class="bg-white p-4 mb-4 rounded-lg shadow">
-											{service.name.en}{" "}
-										</div>
-									)}
+									{(service) => {
+										return (
+											<div class="mb-3 bg-white p-3 rounded-lg shadow flex flex-col">
+												<div class="flex-row flex mb-3 justify-between">
+													<p class="text-base flex-1">
+														{service.name.en}
+													</p>
+													<button
+														onClick={() =>
+															isSaved(service.id)
+																? removeService(service.id)
+																: saveService(service.id)
+														}
+														class="flex justify-center items-center bg-slate-200 ml-1 h-8 w-8 rounded-full"
+													>
+														{isSaved(service.id) ? (
+															<FaSolidClipboardCheck size={18} />
+														) : (
+															<FaRegularClipboard size={18} />
+														)}
+													</button>
+												</div>
+												<p class="text-sm text-slate-500 line-clamp-2">
+													{service.description.en}
+												</p>
+											</div>
+										);
+									}}
 								</For>
 							)}
 						</div>
