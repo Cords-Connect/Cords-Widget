@@ -8,6 +8,7 @@ import {
 } from "solid-icons/fa";
 import { Transition } from "solid-transition-group";
 import { initializeClipboard } from "./lib/clipboard";
+import { initializeAnalytics } from "./lib/analytics";
 
 const Home = lazy(() => import("./Home"));
 const Clipboard = lazy(() => import("./Clipboard"));
@@ -21,6 +22,7 @@ const App = () => {
 
 	// Initialize clipboard
 	initializeClipboard();
+	initializeAnalytics();
 
 	return (
 		<Transition
