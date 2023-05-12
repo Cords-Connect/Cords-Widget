@@ -1,6 +1,5 @@
-import { For, Show, createContext, createEffect, createResource, createSignal } from "solid-js";
+import { Show, createSignal, lazy } from "solid-js";
 import {
-	FaRegularClipboard,
 	FaSolidClipboardCheck,
 	FaSolidHouse,
 	FaSolidMagnifyingGlass,
@@ -8,9 +7,10 @@ import {
 	FaSolidX,
 } from "solid-icons/fa";
 import { Transition } from "solid-transition-group";
-import Clipboard from "./Clipboard";
 import { initializeClipboard } from "./lib/clipboard";
-import Recommended from "./Recommended";
+
+const Home = lazy(() => import("./Home"));
+const Clipboard = lazy(() => import("./Clipboard"));
 
 const App = () => {
 	// signal for widget open/close
@@ -50,40 +50,41 @@ const App = () => {
 			>
 				<div class="all fixed h-screen w-screen left-0 right-0 top-0 bottom-0 sm:left-auto sm:top-auto sm:bottom-6 sm:right-6 z-50 sm:h-[600px] sm:w-[400px] overflow-x-hidden overflow-y-scroll sm:rounded-2xl bg-slate-100 shadow-2xl font-lato flex flex-col">
 					<div class="bg-black bg-gradient-to-r from-slate-800 to-slate-600 text-white">
-						<div class="flex justify-end p-4">
-							<button
-								onClick={() => setPage("home")}
-								class="mb-4 flex h-7 w-7 items-center justify-center rounded-lg bg-slate-800 bg-opacity-30 text-white transition-colors hover:bg-opacity-50 mr-2"
-							>
-								<FaSolidHouse size={14} />
-							</button>
-							<button
-								onClick={() => setPage("clipboard")}
-								class="mb-4 flex h-7 w-7 items-center justify-center rounded-lg bg-slate-800 bg-opacity-30 text-white transition-colors hover:bg-opacity-50 mr-2"
-							>
-								<FaSolidClipboardCheck size={14} />
-							</button>
-							<a
-								target="_blank"
-								href="https://cords.dev"
-								class="mb-4 flex h-7 w-7 items-center justify-center rounded-lg bg-slate-800 bg-opacity-30 text-white transition-colors hover:bg-opacity-50 mr-2"
-							>
-								<FaSolidMagnifyingGlass size={14} />
-							</a>
-							<button
-								onClick={toggle}
-								class="mb-4 flex h-7 w-7 items-center justify-center rounded-lg bg-slate-800 bg-opacity-30 text-white transition-colors hover:bg-opacity-50"
-							>
-								<FaSolidX size={14} />
-							</button>
-						</div>
-						<div class="p-6">
-							<h3 class="mb-2 text-xl font-bold text-white">
-								Welcome to the CORDS widget
-							</h3>
-							<p class="text-slate-200">Here you can view similar services</p>
-						</div>
-						{page() === "home" && <Recommended id={id} />}
+						<header class="flex justify-between p-4 items-center">
+							{page() !== "home" && (
+								<h3 class="text-lg font-bold">
+									{page().charAt(0).toUpperCase() + page().slice(1)}
+								</h3>
+							)}
+							<nav class="flex-1 flex justify-end">
+								<button
+									onClick={() => setPage("home")}
+									class="flex h-7 w-7 items-center justify-center rounded-lg bg-slate-800 bg-opacity-30 text-white transition-colors hover:bg-opacity-50 mr-2"
+								>
+									<FaSolidHouse size={14} />
+								</button>
+								<button
+									onClick={() => setPage("clipboard")}
+									class="flex h-7 w-7 items-center justify-center rounded-lg bg-slate-800 bg-opacity-30 text-white transition-colors hover:bg-opacity-50 mr-2"
+								>
+									<FaSolidClipboardCheck size={14} />
+								</button>
+								<a
+									target="_blank"
+									href="https://cords.dev"
+									class="flex h-7 w-7 items-center justify-center rounded-lg bg-slate-800 bg-opacity-30 text-white transition-colors hover:bg-opacity-50 mr-2"
+								>
+									<FaSolidMagnifyingGlass size={14} />
+								</a>
+								<button
+									onClick={toggle}
+									class="flex h-7 w-7 items-center justify-center rounded-lg bg-slate-800 bg-opacity-30 text-white transition-colors hover:bg-opacity-50"
+								>
+									<FaSolidX size={14} />
+								</button>
+							</nav>
+						</header>
+						{page() === "home" && <Home id={id} />}
 						{page() === "clipboard" && <Clipboard />}
 					</div>
 				</div>

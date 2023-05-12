@@ -1,9 +1,14 @@
-import { For } from "solid-js";
+import { For, createResource } from "solid-js";
 import ServiceItem from "./ServiceItem";
-import { clipboardServices } from "./lib/clipboard";
+import { clipboardIDs, fetchClipboard } from "./lib/clipboard";
 
 const Clipboard = () => {
-	if (clipboardServices().length === 0) {
+	const [clipboardServices] = createResource(
+		() => clipboardIDs(),
+		() => fetchClipboard(clipboardIDs())
+	);
+
+	if (clipboardServices() && clipboardServices().length === 0) {
 		return <div class="p-3 text-black bg-slate-100">Empty</div>;
 	}
 

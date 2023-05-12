@@ -38,19 +38,16 @@ export const initializeClipboard = () => {
 	}
 };
 
-export const [clipboardServices] = createResource(
-	() => clipboardIDs(),
-	async (clipboardIDs: string[]) => {
-		if (clipboardIDs.length === 0) return [];
-		let ids = "";
-		clipboardIDs.forEach(
-			(id, index) =>
-				(ids += `ids${encodeURIComponent(`[${index}]`)}=${id}${
-					index !== clipboardIDs.length - 1 ? "&" : ""
-				}`)
-		);
-		const response = await fetch(`https://backend-api-dev.cords.dev/search?${ids}`);
-		const data = await response.json();
-		return z.object({ data: ServiceSchema.array() }).parse(data).data;
-	}
-);
+export const fetchClipboard = async (clipboardIDs: string[]) => {
+	if (clipboardIDs.length === 0) return [];
+	let ids = "";
+	clipboardIDs.forEach(
+		(id, index) =>
+			(ids += `ids${encodeURIComponent(`[${index}]`)}=${id}${
+				index !== clipboardIDs.length - 1 ? "&" : ""
+			}`)
+	);
+	const response = await fetch(`https://backend-api-dev.cords.dev/search?${ids}`);
+	const data = await response.json();
+	return z.object({ data: ServiceSchema.array() }).parse(data).data;
+};
