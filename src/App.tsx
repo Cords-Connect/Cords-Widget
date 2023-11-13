@@ -1,4 +1,3 @@
-import { Show, createSignal, lazy } from "solid-js";
 import {
 	FaSolidClipboardCheck,
 	FaSolidHouse,
@@ -6,9 +5,10 @@ import {
 	FaSolidQuestion,
 	FaSolidX,
 } from "solid-icons/fa";
+import { Show, createSignal, lazy } from "solid-js";
 import { Transition } from "solid-transition-group";
-import { initializeClipboard } from "./lib/clipboard";
 import { initializeAnalytics } from "./lib/analytics";
+import { initializeClipboard } from "./lib/clipboard";
 
 const Home = lazy(() => import("./Home"));
 const Clipboard = lazy(() => import("./Clipboard"));
@@ -18,7 +18,7 @@ const App = () => {
 	const [open, setOpen] = createSignal(false);
 	const [page, setPage] = createSignal("home");
 	const toggle = () => setOpen(!open());
-	const id = "9f19b5ed-658d-4370-bc71-ee0a4ce7d30d";
+	const id = "30f430fc-1a57-4265-9603-7837da6dbb5c";
 
 	// Initialize clipboard
 	initializeClipboard();

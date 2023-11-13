@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-import { createSignal, createResource } from "solid-js";
+import { createSignal } from "solid-js";
 import { z } from "zod";
 import { ServiceSchema } from "../service";
 
@@ -59,7 +59,7 @@ export const fetchClipboard = async (clipboardIDs: string[]) => {
 				index !== clipboardIDs.length - 1 ? "&" : ""
 			}`)
 	);
-	const response = await fetch(`https://backend-api-dev.cords.dev/search?${ids}`);
+	const response = await fetch(`https://api.cords.ai/search?${ids}`);
 	const data = await response.json();
 	return z.object({ data: ServiceSchema.array() }).parse(data).data;
 };

@@ -1,6 +1,6 @@
+import { Component, For, createResource } from "solid-js";
 import ServiceItem from "./ServiceItem";
 import { ServiceSchema } from "./service";
-import { Component, For, createResource } from "solid-js";
 
 type Props = {
 	id: string;
@@ -8,15 +8,14 @@ type Props = {
 
 const Home: Component<Props> = (props) => {
 	const fetchService = async (id: string) => {
-		const response = await fetch(`https://backend-api-dev.cords.dev/resource/${id}`);
+		const response = await fetch(`https://api.cords.ai/resource/${id}`);
 		const data = await response.json();
-		return ServiceSchema.parse(data);
+		const service = ServiceSchema.parse(data);
+		window.console.log(service);
+		return service;
 	};
 
-	const [service] = createResource(
-		() => props.id,
-		() => fetchService(props.id)
-	);
+	const [service] = createResource(props.id, () => fetchService(props.id));
 
 	return (
 		<>
@@ -29,8 +28,8 @@ const Home: Component<Props> = (props) => {
 					<div class="flex-1 flex justify-center items-center">Loading...</div>
 				)}
 				{service.error && <div class="flex-1 flex justify-center items-center">Error</div>}
-				{service() && service().recommendations && (
-					<For each={service().recommendations}>
+				{service() && service().hydratedSimilarResources && (
+					<For each={service().hydratedSimilarResources}>
 						{(service) => {
 							return (
 								<ServiceItem
